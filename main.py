@@ -1,6 +1,7 @@
 ﻿import random
 from enum import Enum
 from string import Template
+from typing import TypeAlias
 
 class Color(Enum):
     RED = "RED"
@@ -28,18 +29,20 @@ def get_color():
     elif color == Color.ORANGE:
         print(Color["ORANGE"])
 
-def get_random_color(colorz: list) -> str:
+TypedColor: TypeAlias = list[tuple[str]]
+
+def get_random_color(colorz: TypedColor) -> TypedColor:
     return random.choice(colorz)
 
 
-def color():
+def color() -> TypedColor:
     colorz = list()
     colorz.append("RED")
     colorz.append("GREEN")
     colorz.append("BLUE")
     colorz.append("ORANGE")
 
-    return get_random_color(list(colorz))
+    return get_random_color(TypedColor(colorz))
 
 colors = ColorsClient(COLORS.substitute(colorMade=color()))
 
